@@ -1,223 +1,374 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moksedul Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Infinity Hub | Tech • AI • Search</title><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"><style>
 
-<style>
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
 }
 
 body{
-background:#121212;
+font-family:'Poppins',sans-serif;
+background:#050816;
 color:white;
+overflow-x:hidden;
+}
+
+body::before{
+content:'';
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+background:
+radial-gradient(circle at top left,#1e3a8a33,transparent 30%),
+radial-gradient(circle at bottom right,#06b6d433,transparent 30%);
+z-index:-1;
+}
+
+header{
+padding:40px 20px 20px;
+text-align:center;
+}
+
+.logo{
+font-family:'Orbitron',sans-serif;
+font-size:2.5rem;
+font-weight:700;
+letter-spacing:3px;
+color:#00e5ff;
+text-shadow:0 0 15px #00e5ff;
+}
+
+.tagline{
+margin-top:10px;
+font-size:.95rem;
+opacity:.8;
+}
+
+.hero{
+max-width:850px;
+margin:auto;
 padding:20px;
-transition:0.3s;
+text-align:center;
 }
 
-body.light{
-background:#f5f5f5;
-color:#111;
+.hero p{
+line-height:1.8;
+opacity:.9;
 }
 
-.header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:20px;
-}
-
-.toggle{
-padding:10px 15px;
-border:none;
-border-radius:10px;
-cursor:pointer;
-}
-
-.search-box{
+.search-container{
+max-width:700px;
+margin:30px auto;
 display:flex;
 gap:10px;
-margin-bottom:20px;
+padding:0 15px;
 }
 
-.search-box input{
+.search-container input{
 flex:1;
-padding:12px;
+padding:15px;
 border:none;
-border-radius:12px;
+border-radius:15px;
+background:#10172c;
+color:white;
 font-size:16px;
+outline:none;
+border:1px solid #1e293b;
 }
 
-.search-box button{
-padding:12px;
+.search-container button{
+padding:15px 25px;
 border:none;
-border-radius:12px;
+border-radius:15px;
 cursor:pointer;
+font-weight:600;
+background:#00e5ff;
+color:#000;
 }
 
 .section{
-margin-top:25px;
+padding:30px 15px;
+max-width:1300px;
+margin:auto;
 }
 
-.cards{
+.section-title{
+font-family:'Orbitron',sans-serif;
+margin-bottom:20px;
+font-size:1.3rem;
+color:#00e5ff;
+}
+
+.grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-gap:12px;
-margin-top:10px;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:18px;
 }
 
 .card{
-background:#1f1f1f;
-padding:20px;
-border-radius:16px;
-text-align:center;
-cursor:pointer;
-transition:0.2s;
-}
-
-body.light .card{
-background:white;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
+background:#0d1326;
+border:1px solid #18213f;
+border-radius:22px;
+padding:22px;
+transition:.3s;
 }
 
 .card:hover{
-transform:scale(1.05);
+transform:translateY(-6px);
+border-color:#00e5ff;
+box-shadow:0 0 20px rgba(0,229,255,.25);
+}
+
+.card i{
+font-size:2rem;
+margin-bottom:15px;
+color:#00e5ff;
+}
+
+.card h3{
+margin-bottom:8px;
+}
+
+.card p{
+font-size:.9rem;
+opacity:.8;
+line-height:1.5;
+margin-bottom:15px;
 }
 
 .card a{
+display:inline-block;
+padding:10px 16px;
+border-radius:10px;
+background:#00e5ff;
+color:#000;
 text-decoration:none;
-color:inherit;
-font-weight:bold;
+font-weight:600;
 }
 
-.weather{
-background:#2196f3;
-padding:20px;
-border-radius:15px;
-margin-top:20px;
-text-align:center;
-}
-
-.footer{
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
 margin-top:30px;
-text-align:center;
-opacity:0.7;
 }
-</style>
-</head>
-<body>
 
-<div class="header">
-<h2>Moksedul Hub</h2>
-<button class="toggle" onclick="toggleMode()">🌙 Mode</button>
-</div>
+.stat{
+background:#0d1326;
+padding:20px;
+border-radius:18px;
+text-align:center;
+border:1px solid #18213f;
+}
 
-<div class="search-box">
-<input type="text" id="query" placeholder="Search anything...">
-<button onclick="googleSearch()">Google</button>
-</div>
+.stat h2{
+color:#00e5ff;
+}
 
-<div class="section">
-<h3>Quick Search</h3>
+@media(max-width:768px){
 
-<div class="cards">
+.logo{
+font-size:2rem;
+}
 
-<div class="card">
-<a href="https://www.google.com" target="_blank">
-Google
-</a>
-</div>
+.stats{
+grid-template-columns:1fr;
+}
 
-<div class="card">
-<a href="https://search.brave.com" target="_blank">
-Brave
-</a>
-</div>
+.search-container{
+flex-direction:column;
+}
 
-<div class="card">
-<a href="https://www.youtube.com" target="_blank">
-YouTube
-</a>
-</div>
+.search-container button{
+width:100%;
+}
 
-<div class="card">
-<a href="https://www.wikipedia.org" target="_blank">
-Wikipedia
-</a>
-</div>
+}
 
-</div>
-</div>
+</style></head><body><header><div class="logo">
+∞ INFINITY HUB
+</div><div class="tagline">
+ONE HUB • INFINITE POSSIBILITIES
+</div></header><section class="hero"><p>
+Infinity Hub is a futuristic technology dashboard that combines
+Search Engines, Artificial Intelligence tools, Social Platforms,
+Knowledge Resources and Developer Utilities in one place.
+</p></section><div class="search-container"><input
+type="text"
+id="query"
+placeholder="Search the web...">
 
-<div class="section">
-<h3>AI Tools</h3>
+<button onclick="searchGoogle()">
+Search
+</button></div><section class="section"><h2 class="section-title">
+🔍 Search Engines
+</h2><div class="grid"><div class="card">
+<i class="fa-brands fa-google"></i>
+<h3>Google</h3>
+<p>World's most popular search engine for information, websites and research.</p>
+<a href="https://www.google.com" target="_blank">Open</a>
+</div><div class="card">
+<i class="fa-solid fa-magnifying-glass"></i>
+<h3>Brave Search</h3>
+<p>Privacy focused search engine with independent search results.</p>
+<a href="https://search.brave.com" target="_blank">Open</a>
+</div><div class="card">
+<i class="fa-brands fa-youtube"></i>
+<h3>YouTube</h3>
+<p>Watch videos, tutorials, entertainment and educational content.</p>
+<a href="https://www.youtube.com" target="_blank">Open</a>
+</div><div class="card">
+<i class="fa-brands fa-wikipedia-w"></i>
+<h3>Wikipedia</h3>
+<p>Free online encyclopedia with millions of knowledge articles.</p>
+<a href="https://www.wikipedia.org" target="_blank">Open</a>
+</div></div></section><section class="section"><h2 class="section-title">
+🤖 AI Tools
+</h2><div class="grid"><div class="card">
+<i class="fa-solid fa-robot"></i>
+<h3>ChatGPT</h3>
+<p>AI assistant for learning, coding, research and productivity.</p>
+<a href="https://chatgpt.com" target="_blank">Open</a>
+</div><div class="card">
+<i class="fa-solid fa-gem"></i>
+<h3>Gemini</h3>
+<p>Google AI assistant integrated with Google's ecosystem.</p>
+<a href="https://gemini.google.com" target="_blank">Open</a>
+</div><div class="card">
+<i class="fa-solid fa-bolt"></i>
+<h3>Grok</h3>
+<p>xAI's conversational assistant focused on real-time information.</p>
+<a href="https://grok.com" target="_blank">Open</a>
+</div><div class="card">
+<i class="fa-solid fa-brain"></i>
+<h3>DeepSeek</h3>
+<p>Advanced AI model known for reasoning and coding abilities.</p>
+<a href="https://www.deepseek.com" target="_blank">Open</a>
+</div></div></section>
+  <section class="section"><h2 class="section-title">
+🌐 Social Platforms
+</h2><div class="grid"><div class="card">
+<i class="fa-brands fa-instagram"></i>
+<h3>Instagram</h3>
+<p>Share photos, videos, reels and connect with people worldwide.</p>
+<a href="https://instagram.com" target="_blank">Open</a>
+</div><div class="card">
+<i class="fa-brands fa-facebook"></i>
+<h3>Facebook</h3>
+<p>Social networking platform for communities, pages and friends.</p>
+<a href="https://facebook.com" target="_blank">Open</a>
+</div><div class="card">
+<i class="fa-brands fa-x-twitter"></i>
+<h3>X</h3>
+<p>Follow trends, creators and real-time global conversations.</p>
+<a href="https://x.com" target="_blank">Open</a>
+</div><div class="card">
+<i class="fa-brands fa-reddit"></i>
+<h3>Reddit</h3>
+<p>Discover communities, discussions and user-generated knowledge.</p>
+<a href="https://reddit.com" target="_blank">Open</a>
+</div><div class="card">
+<i class="fa-brands fa-github"></i>
+<h3>GitHub</h3>
+<p>Platform for developers to build, share and host projects.</p>
+<a href="https://github.com" target="_blank">Open</a>
+</div></div></section><section class="section"><h2 class="section-title">
+📊 Infinity Statistics
+</h2><div class="stats"><div class="stat">
+<h2>4+</h2>
+<p>AI Tools</p>
+</div><div class="stat">
+<h2>9+</h2>
+<p>Platforms</p>
+</div><div class="stat">
+<h2>∞</h2>
+<p>Possibilities</p>
+</div></div></section><section class="section"><h2 class="section-title">
+👨‍💻 About The Project
+</h2><div class="card"><h3>Built by Moksedul Ali</h3><p>
+Infinity Hub started as a simple idea: create a personal technology
+dashboard using only a mobile phone and free online tools.
+</p><p>
+The project was developed by Moksedul Ali with the assistance of ChatGPT.
+From creating the GitHub repository to publishing the website online,
+every step was completed through learning, experimentation and continuous
+improvement.
+</p><p>
+The goal of Infinity Hub is to bring Search, AI, Knowledge and Social
+Platforms together in one futuristic and easy-to-use interface.
+</p><br><p>
+📷 Instagram: <b>@moksedul_06</b>
+</p><p>
+📧 Email: <b>contact@example.com</b>
+</p></div></section><section class="section"><h2 class="section-title">
+⚙ Technology Stack
+</h2><div class="grid"><div class="card">
+<i class="fa-brands fa-html5"></i>
+<h3>HTML5</h3>
+<p>Structure and content of the website.</p>
+</div><div class="card">
+<i class="fa-brands fa-css3-alt"></i>
+<h3>CSS3</h3>
+<p>Modern futuristic styling and responsiveness.</p>
+</div><div class="card">
+<i class="fa-brands fa-js"></i>
+<h3>JavaScript</h3>
+<p>Interactive functionality and search actions.</p>
+</div><div class="card">
+<i class="fa-brands fa-github"></i>
+<h3>GitHub Pages</h3>
+<p>Free hosting and deployment platform.</p>
+</div></div></section><footer style="
+padding:40px 20px;
+text-align:center;
+border-top:1px solid #18213f;
+margin-top:30px;
+"><h3 style="color:#00e5ff;">
+∞ Infinity Hub
+</h3><p style="margin-top:10px;opacity:.8;">
+One Hub • Infinite Possibilities
+</p><p style="margin-top:15px;font-size:.9rem;opacity:.7;">
+Designed & Developed by Moksedul Ali with ChatGPT
+</p><p style="margin-top:10px;font-size:.8rem;opacity:.5;">
+Version 2.0
+</p></footer><script>
 
-<div class="cards">
+function searchGoogle(){
 
-<div class="card">
-<a href="https://chatgpt.com" target="_blank">
-ChatGPT
-</a>
-</div>
+let query =
+document.getElementById("query").value;
 
-<div class="card">
-<a href="https://gemini.google.com" target="_blank">
-Gemini
-</a>
-</div>
+if(query.trim() !== ""){
 
-<div class="card">
-<a href="https://grok.com" target="_blank">
-Grok
-</a>
-</div>
-
-<div class="card">
-<a href="https://www.deepseek.com" target="_blank">
-DeepSeek
-</a>
-</div>
-
-</div>
-</div>
-
-<div class="weather">
-<h3>Weather</h3>
-<p>Tap below</p>
-<br>
-<a href="https://www.google.com/search?q=weather"
-style="color:white;font-weight:bold;">
-Check Weather
-</a>
-</div>
-
-<div class="footer">
-<p>Moksedul Hub © 2026</p>
-</div>
-
-<script>
-
-function googleSearch(){
-let q=document.getElementById("query").value;
-
-if(q.trim()!==""){
 window.open(
-"https://www.google.com/search?q="+encodeURIComponent(q),
+"https://www.google.com/search?q=" +
+encodeURIComponent(query),
 "_blank"
 );
-}
-}
 
-function toggleMode(){
-document.body.classList.toggle("light");
 }
 
-</script>
+}
 
-</body>
+document
+.getElementById("query")
+.addEventListener("keypress",function(e){
+
+if(e.key==="Enter"){
+searchGoogle();
+}
+
+});
+
+</script></body>
 </html>
